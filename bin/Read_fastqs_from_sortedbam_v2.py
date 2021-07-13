@@ -151,20 +151,30 @@ def read_fastqs_one_chrom(sorted_bam_file,chr_num):
     
     df['seq_len'] = df.seq.apply(lambda x :len(x))
     df = df.sort_values(['name','read1','mapq','seq_len'],ascending = [True,False,False,False]).reset_index(drop=True)
-    df.to_csv('inf.csv')
     df1 = df.groupby(['name','read1']).head(1)
-    print(df1.shape,'luocan')
+
     # # df to fastq
     seq_list = df1.seq.values
     qual_list = df1.qual.values
     name_list = df1.name.values
-    s =''
+
+    import numpy as np
+    ct = np.unique(name_list,return_counts = True)
+    unpaired_name = set(ct[0][ct[1]!=2])
+
+    # s =''
+    new_name_list = []
+    block_list = []
     for i in range(len(seq_list)):
-        line = '@'+name_list[i]+'\n'+seq_list[i]+'\n+\n'+\
-        qual_list[i]+'\n'
-        s = s+line
-    # with open(output_path,'w') as f:
-    #     f.write(s)
+        if name_list[i] not in unpaired_name:
+            new_name_list.append(name_list[i])
+            block = '@'+name_list[i]+'\n'+seq_list[i]+'\n+\n'+\
+            qual_list[i]+'\n'
+            block_list.append(block)
+
+    idx = np.argsort(new_name_list)
+    block_list = np.array(block_list)[idx]
+    s = ''.join(block_list)
     fw_use = fw_curr[chr_num]
     fw_use.write(s)
 
