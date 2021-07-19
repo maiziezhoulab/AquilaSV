@@ -1,4 +1,4 @@
-# :milky_way: Aquila_stLFR :eagle: 
+# :milky_way: AquilaSV :eagle: 
 [![BioConda Install](https://img.shields.io/conda/dn/bioconda/aquila_stlfr.svg?style=flag&label=BioConda%20install)](https://anaconda.org/bioconda/aquila_stlfr)
 # Install through Bioconda (The updated version 1.2.11):
 Version <a href="https://github.com/maiziex/Aquila_stLFR/blob/master/src/version_history_tracking.md">history tracking</a> 
