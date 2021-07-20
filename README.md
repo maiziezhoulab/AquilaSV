@@ -60,12 +60,6 @@ python3 AquilaSV/bin/AquilaSV_step1.py  --bam_file selected.bam --vcf_file test.
 
 **--clean:** default = 1. It will delete all assembly files from SPAdes and intermediate bam/fastq files from AquilaSV.
 
-#### Memory/Time Usage For Step 1
-##### Running Step 1 
-
-Coverage | Memory| Time for chr3（50kb flanking region) on a single node | 
---- | --- | --- | 
-90X | 50GB | 01:47 |
 
 
 ### Step 2: 
@@ -85,14 +79,6 @@ python3 AquilaSV/bin/AquilaSV_step2.py --out_dir test_sv --chr_num 3 --reference
 
 **--num_threads_spades:** default = 5, this is the "-t" for SPAdes. 
 
-
-
-
-#### Memory/Time Usage For Step 2
-##### Running Step 2 
-Coverage| Memory| Time for chr3_53269957 on a single node | --num_threads | --num_threads_spades|
---- | --- | --- | ---|---|
-90X| 50GB | 04:44 |40 | 20|
 
 
 ### Step 3: 
