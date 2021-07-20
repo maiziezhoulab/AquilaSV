@@ -34,55 +34,34 @@ After running "./install.sh", a folder "source" would be download, it includes h
 Put the "AquilaSV/bin" in the ".bashrc" file, and source the ".bashrc" file <br />
 Or just use the fullpath of "**AquilaSV_step1.py**" and "**AquilaSV_step2.py**"
 
-*We provide  <a href="https://github.com/maiziex/Aquila_stLFR/blob/master/example_data/run_example_data.md">a small chromosome (chr21) example dataset</a> to run the whole pipeline before you try it into the large dataset. 
-
-### Step 0:
-
-set input file path and working directory
-
-```
-software_path=AquilaSV/bin
-test_dir=chr3_53269957
-vcf_file=Freebayes_results_hg19/L5_hg19_ref_freebayes.vcf
-ref_file=refdata-hg19-2.1.0/fasta/genome.fa 
-```
-**software_path:** this is the directory of AquilaSV
-**test_dir:** this is the working directory where all output files will be saved
-**vcf_file:** VCF file generated from variant caller like "FreeBayes"
-**ref_file:** human reference genome file
+*We provide  <a href="https://github.com/maiziex/Aquila_stLFR/blob/master/example_data/run_example_data.md">a test example dataset</a> to run the whole pipeline. 
 
 
 ### Step 1: 
 ```
-python3 $software_path/AquilaSV_step1.py  --bam_file $test_dir/selected.bam --vcf_file  $vcf_file --cut_limit 50000  --sample_name NA24385 --chr_start 3 --chr_end 3 --out_dir $test_dir/NA24385_stLFR_hg19
+python3 AquilaSV/bin/AquilaSV_step1.py  --bam_file selected.bam --vcf_file test.vcf --cut_limit 50000  --sample_name NA24385 --chr_num 3 --out_dir test_sv
 
 ```
 #### *Required parameters
 
 **--bam_file:** "selected.bam" is bam file generated from bwa-mem. How to get bam file, you can also check <a href="https://github.com/maiziex/Aquila_stLFR/blob/master/src/How_to_get_bam_and_vcf.md">here</a>.
 
-**--vcf_file:** "L5_hg19_ref_freebayes.vcf" is VCF file generated from variant caller like "FreeBayes". How to get vcf file, you can also check <a href="https://github.com/maiziex/Aquila_stLFR/blob/master/src/How_to_get_bam_and_vcf.md">here</a>. 
+**--vcf_file:** "test.vcf" is VCF file generated from variant caller like "FreeBayes". How to get vcf file, you can also check <a href="https://github.com/maiziex/Aquila_stLFR/blob/master/src/How_to_get_bam_and_vcf.md">here</a>. 
 
 **--cut_limit:** this is the parameter to adjust the largest distance limit between any two reads within same molecule, default is 50000
 
-**--sample_name:** "NA24385" are the sample name you can define. 
+**--sample_name:** "NA24385" are the sample name you can define.
 
+**--chr_num:** "3" is the chromosome number you need to define for the target region or structural variant.
 
 
 #### *Optional parameters
-**--out_dir:** default = ./Asssembly_results. You can define your own folder, for example "Assembly_results_NA24385". 
-
-**--block_threshold:** default = 200000 (200kb)
- 
-**--block_len_use:** default = 100000 (100kb)
+**--out_dir:** default = ./AquilaSV_results. You can define your own folder name.
 
 **--num_threads:** default = 8. It's recommended not to change this setting unless large memory node could be used (2*memory capacity(it suggests for assembly below)), then try to use "--num_threads 12". 
 
-**--chr_start --chr_end:**  Since AquilaSV is a region based assembly tool, you should set the two paramters to be the same (your intended chromsome), for exmaple, use "--chr_start 3 --chr_end 3" will only assembly chromosome 3. 
-(*Notes: Use 23 for "chrX")
+**--deletion_mode:** default = 1. It will delete all assembly files from SPAdes and intermediate bam/fastq files from AquilaSV.
 
-**--deletion_mode:** determine whether you want to delete unnecessary files or not. default = 1 (will delete those files)
-If your hard drive storage is limited(AquilaSV could generate a lot of intermediate files), it is suggested to quickly clean some data by setting this to 1. Or you can keep them for some analysis (check the above output directory tree for details). 
 #### Memory/Time Usage For Step 1
 ##### Running Step 1 
 
@@ -91,29 +70,22 @@ Coverage | Memory| Time for chr3（50kb flanking region) on a single node |
 90X | 50GB | 01:47 |
 
 
-
-
-
-
-
 ### Step 2: 
 ```
-python3 $software_path/AquilaSV_step2.py  --chr_start 3 --chr_end 3 --out_dir $test_dir/NA24385_stLFR_hg19  --num_threads 40 --num_threads_spades 20 --reference  $ref_file
+python3 AquilaSV/bin/AquilaSV_step2.py  --chr_num 3 --out_dir test_sv  --num_threads 40 --num_threads_spades 20 --reference  genome_hg19.fa
 
 ```
 #### *Required parameters
-**--reference:** "genome.fa" is the reference fasta file you can download by "./install".
+**--reference:** "genome_hg19.fa" is the human reference fasta file.
 
 #### *Optional parameters
-**--out_dir:** default = ./Asssembly_results, make sure it's the same as "--out_dir" from ***Step1*** if you want to define your own output directory name.
+**--out_dir:** default = ./AquilaSV_results, make sure it's the same as "--out_dir" from ***Step1*** if you want to define your own output directory name.
 
-**--num_threads:** default = 30, this determines the number of files assembled simultaneously by SPAdes.  
+**--num_threads:** default = 10, this determines the number of files assembled simultaneously by SPAdes.  
 
 **--num_threads_spades:** default = 5, this is the "-t" for SPAdes. 
 
-**--block_len_use:** default = 100000 (100kb)
-
-**--chr_start --chr_end:** if you only want to assembly some chromosomes or only one chromosome. For example: use "--chr_start 1 --chr_end 2" 
+**--chr_num:** "3" is the chromosome number you need to define for the target region or structural variant.
 
 
 #### Memory/Time Usage For Step 2
@@ -123,11 +95,9 @@ Coverage| Memory| Time for chr3_53269957 on a single node | --num_threads | --nu
 90X| 50GB | 04:44 |40 | 20|
 
 
-
-
 ### Step 3: 
 ```
-python3 $software_path/AquilaSV_step3.py  --assembly_dir $test_dir/NA24385_stLFR_hg19  --ref_file  $ref_file  --num_of_threads 2 --out_dir $test_dir/NA24385_stLFR_hg19/AquilaSV_Step3_Results --var_size 1  --chr_start 3 --chr_end 3 --all_regions_flag 1
+python3 $software_path/AquilaSV_step3.py  --assembly_dir test_sv  --ref_file genome_hg19.fa  --num_of_threads 2 --out_dir $test_dir/NA24385_stLFR_hg19/AquilaSV_Step3_Results --var_size 1  --chr_start 3 --chr_end 3 --all_regions_flag 1
 
 ```
 #### *Required parameters
