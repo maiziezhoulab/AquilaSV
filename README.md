@@ -87,7 +87,7 @@ python3 AquilaSV/bin/AquilaSV_step3.py  --assembly_dir test_sv  --ref_file genom
 
 ```
 #### *Required parameters
-**--assembly_dir:** folder to store assembly results from step1 and step2 (out_dir for step1 and step2).
+**--assembly_dir:** folder to store assembly results from step1 and step2 (same as "--out_dir" for step1 and step2).
 
 **--ref_file:** "genome_hg19.fa" is the human reference fasta file.
 
