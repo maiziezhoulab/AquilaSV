@@ -102,14 +102,15 @@ python3 AquilaSV/bin/AquilaSV_step3.py  --assembly_dir test_sv  --ref_file genom
 
 **--num_of_threads:** number of threads, default = 1
 
-**--clean:** default = 1. You can choose to delete intermidiate files or no
+**--clean:** default = 1. You can choose to delete 
+diate files or no
 
 
 
 #### Memory/Time Usage For AquilaSV
 Coverage| Memory| Time for one SV on a single node 
 --- | --- | --- | 
-60X | XXXGB | 00:06:11 |
+60X | 30GB | 00:10:32 |
 
 
 ## Final Output:
