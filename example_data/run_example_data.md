@@ -9,7 +9,7 @@ Aquila_stLFR_exampledata
 |-test_freebayes.vcf (hg19)
 |
 |-genome_hg19.fa         
-
+```
 
 Run the whole pipeline:
 ```
