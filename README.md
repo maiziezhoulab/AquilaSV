@@ -101,12 +101,12 @@ python3 $software_path/AquilaSV_step3.py  --assembly_dir test_sv  --ref_file gen
 
 ```
 #### *Required parameters
-**--all_regions_flag:** 1 is for variants calling in all regions (including some regions with haploid assemblies), default = 0 for diploid regions
 **--assembly_dir:** folder to store Aquila assembly results at Aquila assembly steps
 **--out_dir:** Directory to store outputs, default = ./AquilaSV_Step3_Results
 **--ref_file:** Required parameter, reference fasta file, run ./install.sh to dowload GRCh38 human reference fasta
 
 #### *Optional parameters
+**--all_regions_flag:** 1 is for variants calling in all regions (including some regions with haploid assemblies), default = 0 for diploid regions
 **--chr_start,--chr_end:** both of them should be set to your interested chromosome
 **--var_size:** variant size, cut off size for indel and SV, default = 1
 **--num_of_threads:** number of threads, default = 1
