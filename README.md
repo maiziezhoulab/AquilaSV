@@ -11,7 +11,7 @@ conda install AquilaSV
 AquilaSV_step1 --help
 AquilaSV_step2 --help
 AquilaSV_step3 --help
-
+```
 
 ## Dependencies for Github install:
 AquilaSV utilizes <a href="https://www.python.org/downloads/">Python3 (+ numpy, pysam, sortedcontainers, and scipy)</a>, <a href="http://samtools.sourceforge.net/">SAMtools</a>, and <a href="https://github.com/lh3/minimap2">minimap2</a>. To be able to execute the above programs by typing their name on the command line, the program executables must be in one of the directories listed in the PATH environment variable (".bashrc"). <br />
