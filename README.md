@@ -3,19 +3,15 @@
 # Install through Bioconda (The updated version 1.2.11):
 Version <a href="https://github.com/maiziex/Aquila_stLFR/blob/master/src/version_history_tracking.md">history tracking</a> 
 ```
-conda install aquila_stlfr
+conda install AquilaSV
 ```
 (Please ensure <a href="https://bioconda.github.io/user/install.html#set-up-channels">channels</a> are properly setup for bioconda before installing) 
 
 ```
-Aquila_stLFR_step1 --help
-Aquila_stLFR_step2 --help
-Aquila_stLFR_clean --help
-Aquila_step1_hybrid --help
-Aquila_stLFR_assembly_based_variants_call --help
-Aquila_stLFR_phasing_all_variants --help
-Aquila_step0_sortbam_hybrid --help
-Aquila_stLFR_fastq_preprocess --help
+AquilaSV_step1 --help
+AquilaSV_step2 --help
+AquilaSV_step3 --help
+
 # You can also check the below corresponding scripts for details
 ```
 ```
@@ -26,13 +22,13 @@ wget http://xinzhouneuroscience.org/wp-content/uploads/2019/05/source.tar.gz
 wget http://xinzhouneuroscience.org/wp-content/uploads/2019/05/Uniqness_map.tar.gz
 ```
 ## Dependencies for Github install:
-Aquila_stLFR utilizes <a href="https://www.python.org/downloads/">Python3 (+ numpy, pysam, sortedcontainers, and scipy)</a>, <a href="http://samtools.sourceforge.net/">SAMtools</a>, and <a href="https://github.com/lh3/minimap2">minimap2</a>. To be able to execute the above programs by typing their name on the command line, the program executables must be in one of the directories listed in the PATH environment variable (".bashrc"). <br />
+AquilaSV utilizes <a href="https://www.python.org/downloads/">Python3 (+ numpy, pysam, sortedcontainers, and scipy)</a>, <a href="http://samtools.sourceforge.net/">SAMtools</a>, and <a href="https://github.com/lh3/minimap2">minimap2</a>. To be able to execute the above programs by typing their name on the command line, the program executables must be in one of the directories listed in the PATH environment variable (".bashrc"). <br />
 Or you could just run "./install.sh" to check their availability and install them if not, but make sure you have installed "python3", "conda" and "wget" first. 
 
 # Install through Github:
 ```
-git clone https://github.com/maiziex/Aquila_stLFR.git
-cd Aquila_stLFR
+git clone https://github.com/maiziex/AquilaSV.git
+cd AquilaSV
 chmod +x install.sh
 ./install.sh
 ```
@@ -42,29 +38,46 @@ chmod +x install.sh
 After running "./install.sh", a folder "source" would be download, it includes human GRCh38 reference fasta file, or you could also just download it by yourself from the corresponding official websites. 
 
 ## Running The Code:
-Put the "Aquila_stLFR/bin" in the ".bashrc" file, and source the ".bashrc" file <br />
-Or just use the fullpath of "**Aquila_stLFR_step1.py**" and "**Aquila_stLFR_step2.py**"
+Put the "AquilaSV/bin" in the ".bashrc" file, and source the ".bashrc" file <br />
+Or just use the fullpath of "**AquilaSV_step1.py**" and "**AquilaSV_step2.py**"
 
 *We provide  <a href="https://github.com/maiziex/Aquila_stLFR/blob/master/example_data/run_example_data.md">a small chromosome (chr21) example dataset</a> to run the whole pipeline before you try it into the large dataset. 
+
+### Step 0:
+
+set input file path and working directory
+
+```
+software_path=/data/maiziezhou_lab/CanLuo/Software/AquilaSV/bin
+test_dir=/data/maiziezhou_lab/CanLuo/10x/wgs/chr3_fix_50000/SV245_53269957
+vcf_file=/data/maiziezhou_lab/Datasets/L5_NA24385_10x/Freebayes_results_hg19/L5_hg19_ref_freebayes.vcf
+ref_file=/data/maiziezhou_lab/Softwares/refdata-hg19-2.1.0/fasta/genome.fa 
+```
+**software_path:** this is the directory of AquilaSV
+**test_dir:** this is the working directory where all output files will be saved
+**vcf_file:** VCF file generated from variant caller like "FreeBayes"
+**ref_file:** human reference genome file
 
 
 ### Step 1: 
 ```
-Aquila_stLFR/bin/Aquila_stLFR_step1.py --fastq_file S12878.fastq --bam_file S12878.bam --vcf_file S12878_freebayes.vcf --sample_name S12878 --out_dir Assembly_results_S12878 --uniq_map_dir Aquila_stLFR/Uniqness_map
+python3 $software_path/AquilaSV_step1.py  --bam_file $test_dir/selected.bam --vcf_file  $vcf_file --cut_limit 50000  --sample_name NA24385 --chr_start 3 --chr_end 3 --out_dir $test_dir/NA24385_stLFR_hg19
+
 ```
 #### *Required parameters
-**--fastq_file:** "S12878.fastq" is the stLFR fastq file (with BX:Z:barcode at the header, you can use Aquila_stLFR/bin/Aquila_stLFR_fastq_preprocess.py to generate the input fastq file, <a href="https://github.com/maiziex/Aquila_stLFR/blob/master/src/How_to_get_bam_and_vcf.md">check here for the processing details</a>)
 
-**--bam_file:** "S12878.bam" is bam file generated from bwa-mem. How to get bam file, you can also check <a href="https://github.com/maiziex/Aquila_stLFR/blob/master/src/How_to_get_bam_and_vcf.md">here</a>.
+**--bam_file:** "selected.bam" is bam file generated from bwa-mem. How to get bam file, you can also check <a href="https://github.com/maiziex/Aquila_stLFR/blob/master/src/How_to_get_bam_and_vcf.md">here</a>.
 
-**--vcf_file:** "S12878_freebayes.vcf" is VCF file generated from variant caller like "FreeBayes". How to get vcf file, you can also check <a href="https://github.com/maiziex/Aquila_stLFR/blob/master/src/How_to_get_bam_and_vcf.md">here</a>. 
+**--vcf_file:** "L5_hg19_ref_freebayes.vcf" is VCF file generated from variant caller like "FreeBayes". How to get vcf file, you can also check <a href="https://github.com/maiziex/Aquila_stLFR/blob/master/src/How_to_get_bam_and_vcf.md">here</a>. 
 
-**--sample_name:** "S12878" are the sample name you can define. 
+**--cut_limit:** this is the parameter to adjust the largest distance limit between any two reads within same molecule, default is 50000
 
-**--uniq_map_dir:** "Aquila_stLFR/Uniqness_map" is the uniqness file you can download by "./install.sh".
+**--sample_name:** "NA24385" are the sample name you can define. 
+
+
 
 #### *Optional parameters
-**--out_dir:** default = ./Asssembly_results. You can define your own folder, for example "Assembly_results_S12878". 
+**--out_dir:** default = ./Asssembly_results. You can define your own folder, for example "Assembly_results_NA24385". 
 
 **--block_threshold:** default = 200000 (200kb)
  
@@ -72,20 +85,19 @@ Aquila_stLFR/bin/Aquila_stLFR_step1.py --fastq_file S12878.fastq --bam_file S128
 
 **--num_threads:** default = 8. It's recommended not to change this setting unless large memory node could be used (2*memory capacity(it suggests for assembly below)), then try to use "--num_threads 12". 
 
-**--chr_start --chr_end:** if you only want to assembly some chromosomes or only one chromosome. For example: use "--chr_start 1 --chr_end 5"  will assemble chromsomes 1,2,3,4,5. Use "--chr_start 2 --chr_end 2" will only assembly chromosome 2. 
+**--chr_start --chr_end:**  Since AquilaSV is a region based assembly tool, you should set the two paramters to be the same (your intended chromsome), for exmaple, use "--chr_start 3 --chr_end 3" will only assembly chromosome 3. 
 (*Notes: Use 23 for "chrX")
 
-
+**--deletion_mode:** determine whether you want to delete unnecessary files or not. default = 1 (will delete those files)
+If your hard drive storage is limited(AquilaSV could generate a lot of intermediate files), it is suggested to quickly clean some data by setting this to 1. Or you can keep them for some analysis (check the above output directory tree for details). 
 #### Memory/Time Usage For Step 1
-##### Running Step 1 for chromosomes parallelly on multiple(23) nodes
+##### Running Step 1 
 
-Coverage | Memory| Time for chr1 on a single node | 
+Coverage | Memory| Time for chr3（50kb flanking region) on a single node | 
 --- | --- | --- | 
-90X | 350GB | 1-10:20:10 |
+90X | 50GB | 01:47 |
 
-Coverage | Memory| Time for chr21 on a single node | 
---- | --- | --- | 
-90X | 100GB | 06:27:28 |
+
 
 
 
@@ -93,10 +105,11 @@ Coverage | Memory| Time for chr21 on a single node |
 
 ### Step 2: 
 ```
-Aquila_stLFR/bin/Aquila_stLFR_step2.py --out_dir Assembly_results_S12878 --num_threads 30 --reference Aquila_stLFR/source/ref.fa
+python3 $software_path/AquilaSV_step2.py  --chr_start 3 --chr_end 3 --out_dir $test_dir/NA24385_stLFR_hg19  --num_threads 40 --num_threads_spades 20 --reference  $ref_file
+
 ```
 #### *Required parameters
-**--reference:** "Aquila_stLFR/source/ref.fa" is the reference fasta file you can download by "./install".
+**--reference:** "genome.fa" is the reference fasta file you can download by "./install".
 
 #### *Optional parameters
 **--out_dir:** default = ./Asssembly_results, make sure it's the same as "--out_dir" from ***Step1*** if you want to define your own output directory name.
@@ -111,14 +124,23 @@ Aquila_stLFR/bin/Aquila_stLFR_step2.py --out_dir Assembly_results_S12878 --num_t
 
 
 #### Memory/Time Usage For Step 2
-##### Running Step 2 for chromosomes parallelly on multiple nodes
+##### Running Step 2 
 Coverage| Memory| Time for chr1 on a single node | --num_threads | --num_threads_spades|
 --- | --- | --- | ---|---|
-90X| 100GB | 11:13:19 |30 | 20|
+90X| 50GB | 04:44 |40 | 20|
 
-Coverage| Memory| Time for chr21 on a single node | --num_threads | --num_threads_spades|
---- | --- | --- | ---|---|
-90X| 100GB | 01:38:09 |30 | 20|
+
+
+
+### Step 3: 
+```
+python3 $software_path/AquilaSV_step3.py  --assembly_dir $test_dir/NA24385_stLFR_hg19  --ref_file  $ref_file  --num_of_threads 2 --out_dir $test_dir/NA24385_stLFR_hg19/AquilaSV_Step3_Results --var_size 1  --chr_start 3 --chr_end 3 --all_regions_flag 1
+
+```
+#### *Required parameters
+**--reference:** "genome.fa" is the reference fasta file you can download by "./install".
+**--all_regions_flag:** 
+#### *Optional parameters
 
 
 
@@ -159,83 +181,19 @@ Assembly_results_S12878
 ## Final Output Format:
 Aquila_stLFR outputs an overall contig file `Aquila_Contig_chr*.fasta` for each chromosome, and one contig file for each haplotype: `Aquila_Contig_chr*_hp1.fasta` and `Aquila_Contig_chr*_hp2.fasta`. For each contig, the header, for an instance, “>36_PS39049620:39149620_hp1” includes contig number “36”, phase block start coordinate “39049620”, phase block end coordinate “39149620”, and haplotype number “1”. Within the same phase block, the haplotype number “hp1” and “hp2” are arbitrary for maternal and paternal haplotypes. For some contigs from large phase blocks, the headers are much longer and complex, for an instance, “>56432_PS176969599:181582362_hp1_ merge177969599:178064599_hp1-177869599:177969599_hp1”. “56” denotes contig number, “176969599” denotes the start coordinate of the final big phase block, “181582362” denotes the end coordinate of the final big phase block, and “hp1” denotes the haplotype “1”. “177969599:178064599_hp1” and “177869599:177969599_hp1” mean that this contig is concatenated from minicontigs in small chunk (start coordinate: 177969599, end coordinate: 178064599, and haplotype: 1) and small chunk (start coordinate: 177869599, end coordinate: 177969599, and haplotype: 1). 
 
-### Clean Data
-##### If your hard drive storage is limited(Aquila_stLFR could generate a lot of intermediate files for local assembly), it is suggested to quily clean some data by running `Aquila_stLFR_clean.py`. Or you can keep them for some analysis (check the above output directory tree for details). 
-```
-Aquila_stLFR/bin/Aquila_stLFR_clean.py --assembly_dir Assembly_results_S12878 
-```
+
 
 ## Assembly Based Variants Calling and Phasing:
 ##### For example, you can use `Assemlby_results_S12878` as input directory to generate a VCF file which includes SNPs, small Indels and SVs. 
-##### Please check <a href="https://github.com/maiziex/Aquila_stLFR/blob/master/Assembly_based_variants_call/README.md/">Assembly_based_variants_call_and_phasing</a> for details. 
+
+
 
 ## Aquila assembly for other version of human referece: hg19
 ##### 1. Download hg19 reference from <a href="https://support.10xgenomics.com/genome-exome/software/downloads/latest">10x Genomics website</a>
-##### 2. Download hg19 "Uniqness_map" folder by wget using the link
-```
-wget http://xinzhouneuroscience.org/wp-content/uploads/2019/06/Uniqness_map_hg19.tar.gz 
-```
-##### If you want to run Aquila for other diploid species with high quality reference genomes, to generate `Uniqness_map` for Aquila, check the details of  <a href="https://bismap.hoffmanlab.org/">hoffmanMappability</a> to get the corresponding "k100.umap.bed.gz", then run `Aquila/bin/Get_uniqnessmap_for_Aquila.py` to get the final "Uniqness_map" folder to run Aquila.
-##### Or you can use our "Aquila_uniqmap" to generate the `Uniqness_map` folder to run Aquila, check <a href="https://github.com/maiziex/Aquila/blob/master/src/How_to_get_uniqmap_folder.md">How_to_get_Umap</a> for details.
-
-# Hybrid assembly of 10x linked-reads and stLFR:
-
-### Step 1: 
-```
-Aquila_stLFR/bin/Aquila_step1_hybrid.py --bam_file_list 10x.bam,stLFR.bam --vcf_file_list S24385_10x_freebayes.vcf,S24385_stLFR_freebayes.vcf --sample_name_list S24385_10x,S24385_stLFR --out_dir Assembly_results_hybrid --uniq_map_dir Aquila_stLFR/Uniqness_map
-```
-#### *Required parameters
-**--bam_file:** "10x.bam" is bam file generated from barcode-awere aligner like "Lonranger align". "stLFR.bam" is bam file generated from "bwa-mem". Each bam file is seperately by comma (",").
-
-**--vcf_file:** "S24385_10x_freebayes.vcf" and "S24385_stLFR_freebayes.vcf" are VCF files generated from variant caller like "FreeBayes". Each VCF file is seperately by comma (",").
-
-**--sample_name:** S24385_10x,S24385_stLFR are the sample names you can define. Each sample name is seperately by comma (",").
-
-**--uniq_map_dir:** "Aquila_stLFR/Uniqness_map" is the uniqness file you can download by "./install.sh".
-
-#### *Optional parameters
-**--out_dir:** default = ./Asssembly_results 
-
-**--block_threshold:** default = 200000 (200kb)
- 
-**--block_len_use:** default = 100000 (100kb)
-
-**--num_threads:** default = 8. It's recommended not to change this setting unless large memory node could be used (2*memory capacity(it suggests for assembly below)), then try to use "--num_threads 12". 
-
-**--num_threads_for_samtools_sort:** default = 20. This setting is evoked for "samtools sort".
-
-**--chr_start --chr_end:** if you only want to assembly some chromosomes or only one chromosome. For example: use "--chr_start 1 --chr_end 5"  will assemble chromsomes 1,2,3,4,5. Use "--chr_start 2 --chr_end 2" will only assemlby chromosome 2. 
-(*Notes: Use 23 for "chrX") To use the above option "--chr_start, --chr_end", it is recommended (not required) to run the below command first to save more time for step1. 
-```
-python Aquila_stLFR/bin/Aquila_step0_sortbam_hybrid.py --bam_file_list ./S24385_Lysis_2/Longranger_align_bam/S24385_lysis_2/outs/possorted_bam.bam,./S24385_Lysis_2H/Longranger_align_bam/S24385_lysis_2H/outs/possorted_bam.bam --out_dir Assembly_results_merged --num_threads_for_samtools_sort 10 --sample_name_list S24385_lysis_2,S24385_lysis_2H 
-```
-
-#### Memory/Time Usage For Step 1
-##### Running Step 1 for chromosomes parallelly on multiple(23) nodes
-
-
-Coverage | Memory| Time for chr22 on a single node | 
---- | --- | --- | 
-90X(stLFR) + 90X (10x linked-reads)| 200GB | 11:39:50 |
 
 
 
 
-### Step 2: (The same as single library assembly)
-```
-Aquila_stLFR/bin/Aquila_stLFR_step2.py --out_dir Assembly_results_hybrid --num_threads 30 --reference Aquila_stLFR/source/ref.fa
-```
-#### *Required parameters
-**--reference:** "Aquila_stLFR/source/ref.fa" is the reference fasta file you can download by "./install".
-
-#### *Optional parameters
-**--out_dir:** default = ./Asssembly_results, make sure it's the same as "--out_dir" from step1 if you want to define your own output directory name.
-
-**--num_threads:** default = 20 
-
-**--block_len_use:** default = 100000 (100kb)
-
-**--chr_start --chr_end:** if you only want to assembly some chromosomes or only one chromosome. 
 
 ### Notes
 #### For stLFR assembly or hybrid assembly, stLFR reads with barcode "0_0_0" are removed to get perfect diploid assembly.  
