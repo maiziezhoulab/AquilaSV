@@ -18,6 +18,7 @@ AquilaSV utilizes <a href="https://www.python.org/downloads/">Python3 (+ numpy, 
 Or you could just run "./install.sh" to check their availability and install them if not, but make sure you have installed "python3", "conda" and "wget" first. 
 
 # Install through Github:
+
 ```
 git clone https://github.com/maiziex/AquilaSV.git
 cd AquilaSV
