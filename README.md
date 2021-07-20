@@ -58,6 +58,8 @@ python3 AquilaSV/bin/AquilaSV_step1.py  --bam_file selected.bam --vcf_file test.
 
 **--num_threads:** default = 8. 
 
+**--num_threads_bwa_mem:** number of threads for bwa-mem, default = 20
+
 **--clean:** default = 1. It will delete all assembly files from SPAdes and intermediate bam/fastq files from AquilaSV.
 
 
