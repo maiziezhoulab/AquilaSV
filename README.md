@@ -109,7 +109,7 @@ python3 AquilaSV/bin/AquilaSV_step3.py  --assembly_dir test_sv  --ref_file genom
 #### Memory/Time Usage For AquilaSV
 Coverage| Memory| Time for one SV on a single node 
 --- | --- | --- | 
-60X | XXXGB | XXX |
+60X | XXXGB | 00:06:11 |
 
 
 ## Final Output:
