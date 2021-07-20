@@ -143,6 +143,6 @@ test_sv
 
 
 ## Troubleshooting:
-##### Please submit issues on the github page for <a href="https://github.com/maiziezhoulab/AquilaSV/issues">Aquila_stLFR</a>. 
+##### Please submit issues on the github page for <a href="https://github.com/maiziezhoulab/AquilaSV/issues">AquilaSV</a>. 
 
 
