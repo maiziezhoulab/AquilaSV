@@ -1,6 +1,6 @@
 # :milky_way: AquilaSV :eagle: 
 [![BioConda Install](https://img.shields.io/conda/dn/bioconda/aquila_stlfr.svg?style=flag&label=BioConda%20install)](https://anaconda.org/bioconda/aquila_stlfr)
-# Install through Bioconda (The updated version 1.2.11):
+# Install through Bioconda:
 Version <a href="https://github.com/maiziex/Aquila_stLFR/blob/master/src/version_history_tracking.md">history tracking</a> 
 ```
 conda install AquilaSV
@@ -41,10 +41,10 @@ Or just use the fullpath of "**AquilaSV_step1.py**" and "**AquilaSV_step2.py**"
 set input file path and working directory
 
 ```
-software_path=/data/maiziezhou_lab/CanLuo/Software/AquilaSV/bin
-test_dir=/data/maiziezhou_lab/CanLuo/10x/wgs/chr3_fix_50000/SV245_53269957
-vcf_file=/data/maiziezhou_lab/Datasets/L5_NA24385_10x/Freebayes_results_hg19/L5_hg19_ref_freebayes.vcf
-ref_file=/data/maiziezhou_lab/Softwares/refdata-hg19-2.1.0/fasta/genome.fa 
+software_path=AquilaSV/bin
+test_dir=chr3_53269957
+vcf_file=Freebayes_results_hg19/L5_hg19_ref_freebayes.vcf
+ref_file=refdata-hg19-2.1.0/fasta/genome.fa 
 ```
 **software_path:** this is the directory of AquilaSV
 **test_dir:** this is the working directory where all output files will be saved
@@ -118,7 +118,7 @@ python3 $software_path/AquilaSV_step2.py  --chr_start 3 --chr_end 3 --out_dir $t
 
 #### Memory/Time Usage For Step 2
 ##### Running Step 2 
-Coverage| Memory| Time for chr1 on a single node | --num_threads | --num_threads_spades|
+Coverage| Memory| Time for chr3_53269957 on a single node | --num_threads | --num_threads_spades|
 --- | --- | --- | ---|---|
 90X| 50GB | 04:44 |40 | 20|
 
@@ -131,27 +131,34 @@ python3 $software_path/AquilaSV_step3.py  --assembly_dir $test_dir/NA24385_stLFR
 
 ```
 #### *Required parameters
-**--reference:** "genome.fa" is the reference fasta file you can download by "./install".
-**--all_regions_flag:** 
-#### *Optional parameters
+**--all_regions_flag:** 1 is for variants calling in all regions (including some regions with haploid assemblies), default = 0 for diploid regions
+**--assembly_dir:** folder to store Aquila assembly results at Aquila assembly steps
+**--out_dir:** Directory to store outputs, default = ./AquilaSV_Step3_Results
+**--ref_file:** Required parameter, reference fasta file, run ./install.sh to dowload GRCh38 human reference fasta
 
+#### *Optional parameters
+**--chr_start,--chr_end:** both of them should be set to your interested chromosome
+**--var_size:** variant size, cut off size for indel and SV, default = 1
+**--num_of_threads:** number of threads, default = 1
+**--deletion_mode:** You can choose to delete intermidiate files or no
+
+#### Memory/Time Usage For Step 3
+##### Running Step 3
+Coverage| Memory| Time for chr3_53269957 on a single node | --num_threads | 
+--- | --- | --- | ---|
+90X| 50GB | 03:00 |2 |
 
 
 ## Final Output:
-**Assembly_Results_S12878/Assembly_Contigs_files:** Aquila_contig.fasta and Aquila_Contig_chr*.fasta 
+**chr3_53269957/NA24385_stLFR_hg19/AquilaSV_step3_results:** Aquila_contig_final.vcf
 ```
-Assembly_results_S12878
+NA24385_stLFR_hg19
 |
 |-H5_for_molecules 
-|   └-S12878_chr*_sorted.h5    --> (Fragment files for each chromosome including barcode, variants annotation (0: ref allele; 1: alt allele), coordinates for each fragment)
-|
-|-HighConf_file
-|   └-chr*_global_track.p      --> (Pickle file for saving coordinates of high-confidence boundary points)
+|   └-NA24385_chr3_sorted.h5    --> (Fragment files for interested region including barcode, variants annotation (0: ref allele; 1: alt allele), coordinates for each fragment)
 |
 |-results_phased_probmodel
 |   └-chr*.phased_final        --> (Phased fragment files)
-|
-|-phase_blocks_cut_highconf
 |
 |-Raw_fastqs
 |   └-fastq_by_Chr_*           --> (fastq file for each chromosome)
@@ -165,10 +172,14 @@ Assembly_results_S12878
 |       |-fastq_by_*_*_hp1_spades_assembly        --> (minicontigs: assembly results for the small chunk of haplotype 1) 
 |       └-fastq_by_*_*_hp2_spades_assembly        --> (minicontigs: assembly results for the small chunk of haplotype 2)
 |
-└-Assembly_Contigs_files
-    |-Aquila_cutPBHC_minicontig_chr*.fasta        --> (final minicontigs for each chromosome)
-    |-Aquila_Contig_chr*.fasta                    --> (final contigs for each chromosome)
-    └-Aquila_contig.fasta                         --> (final contigs for WGS)
+|-Assembly_Contigs_files
+|    |-Aquila_Contig_chr*.fasta                    --> (final contigs for intersted region)
+|    |-Aquila_Contig_chr*_hp1.fasta                     --> (final contigs for hp1)
+|    └-Aquila_Contig_chr*_hp2.fasta                     --> (final contigs for hp2)
+|
+└-AquilaSV_step3_results
+     └-AquilaSV_Contig_final.vcf --> (final VCF including SNPs, small indels and SVs)
+     
 ```
 
 ## Final Output Format:
@@ -176,13 +187,7 @@ Aquila_stLFR outputs an overall contig file `Aquila_Contig_chr*.fasta` for each 
 
 
 
-## Assembly Based Variants Calling and Phasing:
-##### For example, you can use `Assemlby_results_S12878` as input directory to generate a VCF file which includes SNPs, small Indels and SVs. 
 
-
-
-## Aquila assembly for other version of human referece: hg19
-##### 1. Download hg19 reference from <a href="https://support.10xgenomics.com/genome-exome/software/downloads/latest">10x Genomics website</a>
 
 
 
