@@ -18,6 +18,4 @@ python AquilaSV/bin/AquilaSV_step1.py --bam_file test.bam --vcf_file test_freeba
 python AquilaSV/bin/AquilaSV_step2.py --chr_start 21 --chr_end 21 --out_dir test_asm --num_threads 30 --num_threads_spades 20 --reference genome_hg19.fa
 
 python AquilaSVbin/AquilaSV_step3.py  --assembly_dir test_asm  --ref_file genome_hg19.fa  --num_of_threads 2 --out_dir test_variant_results --var_size 1 --chr_start 21 --chr_end 21 --all_regions_flag 1
-
-
 ```
