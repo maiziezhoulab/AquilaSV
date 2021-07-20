@@ -39,7 +39,7 @@ Or just use the fullpath of "**AquilaSV_step1.py**" and "**AquilaSV_step2.py**"
 
 ### Step 1: 
 ```
-python3 AquilaSV/bin/AquilaSV_step1.py  --bam_file selected.bam --vcf_file test.vcf --cut_limit 50000  --sample_name NA24385 --chr_num 3 --out_dir test_sv
+python3 AquilaSV/bin/AquilaSV_step1.py  --bam_file selected.bam --vcf_file test.vcf --chr_num 3 --out_dir test_sv
 
 ```
 #### *Required parameters
@@ -48,19 +48,17 @@ python3 AquilaSV/bin/AquilaSV_step1.py  --bam_file selected.bam --vcf_file test.
 
 **--vcf_file:** "test.vcf" is VCF file generated from variant caller like "FreeBayes". How to get vcf file, you can also check <a href="https://github.com/maiziex/Aquila_stLFR/blob/master/src/How_to_get_bam_and_vcf.md">here</a>. 
 
-**--cut_limit:** this is the parameter to adjust the largest distance limit between any two reads within same molecule, default is 50000
-
-**--sample_name:** "NA24385" are the sample name you can define.
-
 **--chr_num:** "3" is the chromosome number you need to define for the target region or structural variant.
 
 
 #### *Optional parameters
+**--mole_boundary:** this is the parameter to adjust the largest distance limit between any two reads within same molecule, default is 50000
+
 **--out_dir:** default = ./AquilaSV_results. You can define your own folder name.
 
 **--num_threads:** default = 8. It's recommended not to change this setting unless large memory node could be used (2*memory capacity(it suggests for assembly below)), then try to use "--num_threads 12". 
 
-**--deletion_mode:** default = 1. It will delete all assembly files from SPAdes and intermediate bam/fastq files from AquilaSV.
+**--clean:** default = 1. It will delete all assembly files from SPAdes and intermediate bam/fastq files from AquilaSV.
 
 #### Memory/Time Usage For Step 1
 ##### Running Step 1 
