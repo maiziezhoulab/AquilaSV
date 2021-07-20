@@ -39,14 +39,14 @@ Or just use the fullpath of "**AquilaSV_step1.py**", "**AquilaSV_step2.py**" and
 
 ### Step 1: 
 ```
-python3 AquilaSV/bin/AquilaSV_step1.py  --bam_file selected.bam --vcf_file test.vcf --chr_num 3 --out_dir test_sv
+python3 AquilaSV/bin/AquilaSV_step1.py  --bam_file selected.bam --vcf_file test_freebayes.vcf --chr_num 3 --out_dir test_sv
 
 ```
 #### *Required parameters
 
 **--bam_file:** "selected.bam" is a bam file generated from BWA-MEM/LongRanger/EMA. How to get the bam file, you can also check <a href="https://github.com/maiziezhoulab/AquilaSV/blob/master/src/How_to_get_bam_and_vcf.md">here</a>.
 
-**--vcf_file:** "test.vcf" is a VCF file generated from variant caller like "FreeBayes". How to get the vcf file, you can also check <a href="https://github.com/maiziezhoulab/AquilaSV/blob/master/src/How_to_get_bam_and_vcf.md">here</a>. 
+**--vcf_file:** "test_freebayes.vcf" is a VCF file generated from variant caller like "FreeBayes". How to get the vcf file, you can also check <a href="https://github.com/maiziezhoulab/AquilaSV/blob/master/src/How_to_get_bam_and_vcf.md">here</a>. 
 
 **--chr_num:** "3" is the chromosome number you need to define for the target region or the structural variant you are interested in.
 
