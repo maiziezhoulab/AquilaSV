@@ -104,35 +104,29 @@ python3 AquilaSV/bin/AquilaSV_step3.py  --assembly_dir test_sv  --ref_file genom
 
 
 
-#### Memory/Time Usage For Step 3
-##### Running Step 3
-Coverage| Memory| Time for chr3_53269957 on a single node | --num_threads | 
---- | --- | --- | ---|
-90X| 50GB | 03:00 |2 |
+#### Memory/Time Usage For AquilaSV
+Coverage| Memory| Time for one SV on a single node 
+--- | --- | --- | 
+60X | XXXGB | XXX |
 
 
 ## Final Output:
 **test_sv/AquilaSV_step3_results:** Aquila_contig_final.vcf
 ```
-NA24385_stLFR_hg19
+test_sv
 |
 |-H5_for_molecules 
-|   └-NA24385_chr3_sorted.h5    --> (Fragment files for interested region including barcode, variants annotation (0: ref allele; 1: alt allele), coordinates for each fragment)
+|   └-target_chr3_sorted.h5    --> (Fragment files for interested region including barcode, variants annotation (0: ref allele; 1: alt allele), coordinates for each fragment)
 |
 |-results_phased_probmodel
 |   └-chr*.phased_final        --> (Phased fragment files)
 |
-|-Raw_fastqs
-|   └-fastq_by_Chr_*           --> (fastq file for each chromosome)
-|
-|-ref_dir
 |
 |-Local_Assembly_by_chunks
 |   └-chr*_files_cutPBHC
 |       |-fastq_by_*_*_hp1.fastq                  --> (fastq file for a small phased chunk of haplotype 1)
 |       |-fastq_by_*_*_hp2.fastq                  --> (fastq file for a small phased chunk of haplotype 2)
-|       |-fastq_by_*_*_hp1_spades_assembly        --> (minicontigs: assembly results for the small chunk of haplotype 1) 
-|       └-fastq_by_*_*_hp2_spades_assembly        --> (minicontigs: assembly results for the small chunk of haplotype 2)
+|       
 |
 |-Assembly_Contigs_files
 |    |-Aquila_Contig_chr*.fasta                    --> (final contigs for intersted region)
@@ -149,19 +143,7 @@ Aquila_stLFR outputs an overall contig file `Aquila_Contig_chr*.fasta` for each 
 
 
 
-
-
-
-
-
-
-### Notes
-#### For stLFR assembly or hybrid assembly, stLFR reads with barcode "0_0_0" are removed to get perfect diploid assembly.  
-
-
-#### Please also check <a href="https://github.com/maiziex/Aquila">Aquila</a> here 
-
 ## Troubleshooting:
-##### Please submit issues on the github page for <a href="https://github.com/maiziex/Aquila_stLFR/issues">Aquila_stLFR</a>. 
-##### Or contact with me through <a href="maizie.zhou@vanderbilt.edu">maizie.zhou@vanderbilt.edu</a>
+##### Please submit issues on the github page for <a href="https://github.com/maiziezhoulab/AquilaSV/issues">Aquila_stLFR</a>. 
+
 
