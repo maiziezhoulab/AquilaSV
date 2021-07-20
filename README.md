@@ -74,6 +74,7 @@ python3 AquilaSV/bin/AquilaSV_step2.py  --chr_num 3 --out_dir test_sv  --num_thr
 
 ```
 #### *Required parameters
+**--chr_num:** "3" is the chromosome number you need to define for the target region or structural variant.
 **--reference:** "genome_hg19.fa" is the human reference fasta file.
 
 #### *Optional parameters
@@ -83,7 +84,7 @@ python3 AquilaSV/bin/AquilaSV_step2.py  --chr_num 3 --out_dir test_sv  --num_thr
 
 **--num_threads_spades:** default = 5, this is the "-t" for SPAdes. 
 
-**--chr_num:** "3" is the chromosome number you need to define for the target region or structural variant.
+
 
 
 #### Memory/Time Usage For Step 2
@@ -95,20 +96,20 @@ Coverage| Memory| Time for chr3_53269957 on a single node | --num_threads | --nu
 
 ### Step 3: 
 ```
-python3 $software_path/AquilaSV_step3.py  --assembly_dir test_sv  --ref_file genome_hg19.fa  --num_of_threads 2 --out_dir $test_dir/NA24385_stLFR_hg19/AquilaSV_Step3_Results --var_size 1  --chr_start 3 --chr_end 3 --all_regions_flag 1
+python3 $software_path/AquilaSV_step3.py  --assembly_dir test_sv  --ref_file genome_hg19.fa  --num_of_threads 2 --out_dir AquilaSV_Step3_Results --var_size 1  --chr_start 3 --chr_end 3 --all_regions_flag 1
 
 ```
 #### *Required parameters
 **--assembly_dir:** folder to store Aquila assembly results at Aquila assembly steps
-**--out_dir:** Directory to store outputs, default = ./AquilaSV_Step3_Results
+
 **--ref_file:** Required parameter, reference fasta file, run ./install.sh to dowload GRCh38 human reference fasta
 
 #### *Optional parameters
-**--all_regions_flag:** 1 is for variants calling in all regions (including some regions with haploid assemblies), default = 0 for diploid regions
-**--chr_start,--chr_end:** both of them should be set to your interested chromosome
+**--out_dir:** Directory to store variants VCF file from AquilaSV, default = ./AquilaSV_Step3_Results, you can define your own folder name
+**--chr_num:** "3" is the chromosome number you need to define for the target region or structural variant.
 **--var_size:** variant size, cut off size for indel and SV, default = 1
 **--num_of_threads:** number of threads, default = 1
-**--deletion_mode:** You can choose to delete intermidiate files or no
+**--clean:** default = 1. You can choose to delete intermidiate files or no
 
 #### Memory/Time Usage For Step 3
 ##### Running Step 3
@@ -118,7 +119,7 @@ Coverage| Memory| Time for chr3_53269957 on a single node | --num_threads |
 
 
 ## Final Output:
-**chr3_53269957/NA24385_stLFR_hg19/AquilaSV_step3_results:** Aquila_contig_final.vcf
+**test_sv/AquilaSV_step3_results:** Aquila_contig_final.vcf
 ```
 NA24385_stLFR_hg19
 |
