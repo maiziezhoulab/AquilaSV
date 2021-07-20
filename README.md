@@ -28,11 +28,11 @@ chmod +x install.sh
 
 
 ## source folder:
-After running "./install.sh", a folder "source" would be download, it includes human GRCh38 reference fasta file, or you could also just download it by yourself from the corresponding official websites. 
+After running "./install.sh", a folder "source" would be download.
 
 ## Running The Code:
 Put the "AquilaSV/bin" in the ".bashrc" file, and source the ".bashrc" file <br />
-Or just use the fullpath of "**AquilaSV_step1.py**" and "**AquilaSV_step2.py**"
+Or just use the fullpath of "**AquilaSV_step1.py**", "**AquilaSV_step2.py**" and "**AquilaSV_step3.py**"
 
 *We provide  <a href="https://github.com/maiziex/Aquila_stLFR/blob/master/example_data/run_example_data.md">a test example dataset</a> to run the whole pipeline. 
 
@@ -44,19 +44,19 @@ python3 AquilaSV/bin/AquilaSV_step1.py  --bam_file selected.bam --vcf_file test.
 ```
 #### *Required parameters
 
-**--bam_file:** "selected.bam" is bam file generated from bwa-mem. How to get bam file, you can also check <a href="https://github.com/maiziex/Aquila_stLFR/blob/master/src/How_to_get_bam_and_vcf.md">here</a>.
+**--bam_file:** "selected.bam" is a bam file generated from BWA-MEM/LongRanger/EMA. How to get the bam file, you can also check <a href="https://github.com/maiziezhoulab/AquilaSV/blob/master/src/How_to_get_bam_and_vcf.md">here</a>.
 
-**--vcf_file:** "test.vcf" is VCF file generated from variant caller like "FreeBayes". How to get vcf file, you can also check <a href="https://github.com/maiziex/Aquila_stLFR/blob/master/src/How_to_get_bam_and_vcf.md">here</a>. 
+**--vcf_file:** "test.vcf" is a VCF file generated from variant caller like "FreeBayes". How to get the vcf file, you can also check <a href="https://github.com/maiziezhoulab/AquilaSV/blob/master/src/How_to_get_bam_and_vcf.md">here</a>. 
 
-**--chr_num:** "3" is the chromosome number you need to define for the target region or structural variant.
+**--chr_num:** "3" is the chromosome number you need to define for the target region or the structural variant you are interested in.
 
 
 #### *Optional parameters
-**--mole_boundary:** this is the parameter to adjust the largest distance limit between any two reads within same molecule, default is 50000
+**--mole_boundary:** default = 50000 (50kb). We use 50kb to differentiate reads with the same barcode are drawn from different long molecules. 
 
 **--out_dir:** default = ./AquilaSV_results. You can define your own folder name.
 
-**--num_threads:** default = 8. It's recommended not to change this setting unless large memory node could be used (2*memory capacity(it suggests for assembly below)), then try to use "--num_threads 12". 
+**--num_threads:** default = 8. 
 
 **--clean:** default = 1. It will delete all assembly files from SPAdes and intermediate bam/fastq files from AquilaSV.
 
@@ -74,7 +74,8 @@ python3 AquilaSV/bin/AquilaSV_step2.py  --chr_num 3 --out_dir test_sv  --num_thr
 
 ```
 #### *Required parameters
-**--chr_num:** "3" is the chromosome number you need to define for the target region or structural variant.
+**--chr_num:** "3" is the chromosome number you need to define for the target region or the structural variant you are interested in.
+
 **--reference:** "genome_hg19.fa" is the human reference fasta file.
 
 #### *Optional parameters
@@ -96,20 +97,26 @@ Coverage| Memory| Time for chr3_53269957 on a single node | --num_threads | --nu
 
 ### Step 3: 
 ```
-python3 $software_path/AquilaSV_step3.py  --assembly_dir test_sv  --ref_file genome_hg19.fa  --num_of_threads 2 --out_dir AquilaSV_Step3_Results --var_size 1  --chr_start 3 --chr_end 3 --all_regions_flag 1
+python3 AquilaSV/bin/AquilaSV_step3.py  --assembly_dir test_sv  --ref_file genome_hg19.fa  --chr_num 3 
 
 ```
 #### *Required parameters
-**--assembly_dir:** folder to store Aquila assembly results at Aquila assembly steps
+**--assembly_dir:** folder to store assembly results from step1 and step2 (out_dir for step1 and step2).
 
-**--ref_file:** Required parameter, reference fasta file, run ./install.sh to dowload GRCh38 human reference fasta
+**--ref_file:** "genome_hg19.fa" is the human reference fasta file.
+
+**--chr_num:** "3" is the chromosome number you need to define for the target region or the structural variant you are interested in.
 
 #### *Optional parameters
-**--out_dir:** Directory to store variants VCF file from AquilaSV, default = ./AquilaSV_Step3_Results, you can define your own folder name
-**--chr_num:** "3" is the chromosome number you need to define for the target region or structural variant.
-**--var_size:** variant size, cut off size for indel and SV, default = 1
+**--out_dir:** default = ./AquilaSV_Step3_Results. Directory to store the final VCF file from AquilaSV, and you can define your own folder name
+
+**--var_size:** default = 1, variant size, cut off size for indel and SV, 
+
 **--num_of_threads:** number of threads, default = 1
+
 **--clean:** default = 1. You can choose to delete intermidiate files or no
+
+
 
 #### Memory/Time Usage For Step 3
 ##### Running Step 3
