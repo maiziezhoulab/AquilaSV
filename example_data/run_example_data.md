@@ -13,9 +13,9 @@ Aquila_stLFR_exampledata
 
 Run the whole pipeline:
 ```
-python AquilaSV/bin/AquilaSV_step1.py --bam_file test.bam --vcf_file test_freebayes.vcf --sample_name test --chr_start 21 --chr_end 21 --out_dir test_asm --uniq_map_dir Uniqness_map_hg19 --fastq_file test.fastq
+python AquilaSV/bin/AquilaSV_step1.py --bam_file selected.bam --vcf_file test.vcf --chr_num 3 --out_dir test_sv
 
-python AquilaSV/bin/AquilaSV_step2.py --chr_start 21 --chr_end 21 --out_dir test_asm --num_threads 30 --num_threads_spades 20 --reference genome_hg19.fa
+python AquilaSV/bin/AquilaSV_step2.py --out_dir test_sv --chr_num 3 --reference genome_hg19.fa
 
-python AquilaSVbin/AquilaSV_step3.py  --assembly_dir test_asm  --ref_file genome_hg19.fa  --num_of_threads 2 --out_dir test_variant_results --var_size 1 --chr_start 21 --chr_end 21 --all_regions_flag 1
+python AquilaSVbin/AquilaSV_step3.py  --assembly_dir test_sv  --ref_file genome_hg19.fa  --chr_num 3 
 ```
