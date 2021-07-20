@@ -2,7 +2,7 @@
 
 Please download the example data <a href="https://zenodo.org/record/5032380">from Zenodo</a>.
 ```
-Aquila_stLFR_exampledata
+AquilaSV_exampledata
 |-selected.bam (hg19)
 |-selected.bam.bai
 |
