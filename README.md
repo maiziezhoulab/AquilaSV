@@ -70,7 +70,7 @@ Coverage | Memory| Time for chr3（50kb flanking region) on a single node |
 
 ### Step 2: 
 ```
-python3 AquilaSV/bin/AquilaSV_step2.py  --chr_num 3 --out_dir test_sv  --num_threads 40 --num_threads_spades 20 --reference  genome_hg19.fa
+python3 AquilaSV/bin/AquilaSV_step2.py --out_dir test_sv --chr_num 3 --reference genome_hg19.fa
 
 ```
 #### *Required parameters
