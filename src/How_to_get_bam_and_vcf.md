@@ -8,7 +8,7 @@ An important step before AquilaSV pipeline is getting the bam file of your inter
 - steps:
 
 
-step1. make a bed file. ( A bed file is a file that contains the chromosome name, start position and end position of your interested region). A typical bed file's content could be "chr1 123456 223456". You can name your bed file as "select.bed" for AquilaSV.
+step1. make a bed file. ( A bed file is a file that contains the chromosome name, start position and end position of your interested region). A typical bed file's content could be `chr1 123456 223456`. You can name your bed file as `select.bed` for AquilaSV.
 
 step2. extract selected.bam given whole genome bam file and bed file. A typical command should be like
 
@@ -20,4 +20,4 @@ step3. make index file of your selected.bam file.
 `samtools index selected.bam`
 
 
-Now you are all set to run AquilaSV pipeline.
+Once you see `selected.bam` and `selected.bam.bai` in your working directory, you are all set to run AquilaSV pipeline.
