@@ -46,7 +46,7 @@ def delete_files(del_dir):
     return()
 
 
-if __name__ == "__main__":
+def main():
     if len(sys.argv) == 1:
         Popen("python3 " + "AquilaSV_step1.py -h",shell=True).wait()
     else:
@@ -85,3 +85,5 @@ if __name__ == "__main__":
             Popen(del_cmd,shell=True).wait()
     
     
+if __name__ == "__main__":
+    main()
