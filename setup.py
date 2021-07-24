@@ -1,6 +1,6 @@
 from setuptools import setup
 setup(name='AquilaSV',      
-version='1.2',      
+version='1.3',      
 description='A phased diploid assembly and SV calling tool',      
 author='Xin Zhou',      
 author_email='mazie.zhou@vanderbilt.edu',      
