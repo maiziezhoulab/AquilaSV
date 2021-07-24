@@ -8,6 +8,9 @@ The bed file contains the chromosome name, start position and end position of yo
 `samtools -b -L selected.bed wgs.bam > selected.bam`
 `samtools index selected.bam`
 
-To generate the original WGS bam file, you can run LongRanger/EMA/BWA.
+:octocat: To generate the original WGS bam file, you can run LongRanger/EMA/BWA.
+
+
+
 
 Once you generate the `selected.bam` in your working directory, you can use use it to run AquilaSV pipeline.
