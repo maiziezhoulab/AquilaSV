@@ -78,7 +78,7 @@ def fastq_to_bam(fasta_path,bam_path,ref_path):
     cmd4 = "rm %s/%s.sam;"%(file_dir,file_name)
     Popen(cmd1+cmd2+cmd3+cmd4,shell=True).wait()
 
-if __name__ == "__main__":
+def main():
     if len(sys.argv) == 1:
         Popen("python " + "AquilaSV_step2.py -h",shell=True).wait()
     else:
@@ -127,3 +127,5 @@ if __name__ == "__main__":
         Popen(del_cmd,shell=True).wait()
         ###Complete_contiguity(chr_start,chr_end,Assembly_Contigs_dir,phase_blocks_cut_highconf_dir,cut_threshold,ref_dir,ref_idx_file)
     
+if __name__ == "__main__":
+    main()
