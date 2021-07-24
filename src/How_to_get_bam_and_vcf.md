@@ -1,23 +1,13 @@
-An important step before AquilaSV pipeline is getting the bam file of your interested region. Here is a hands-on tutorial of extracting selected.bam.
+To generate the bam file for the target region:
 
-- Sofware:
-    
-    
-    You should have samtools installed.
-    
-- steps:
+#### step1. generate the bed file "selected.bed". 
+The bed file contains the chromosome name, start position and end position of your target region. eg. `chr1 123456 223456`. 
 
+#### step2. generate the "selected.bam" by a WGS bam file (or a bam file from one specific chromosome) and the bed file. 
 
-step1. make a bed file. ( A bed file is a file that contains the chromosome name, start position and end position of your interested region). A typical bed file's content could be `chr1 123456 223456`. You can name your bed file as `select.bed` for AquilaSV.
-
-step2. extract selected.bam given whole genome bam file and bed file. A typical command should be like
-
-`samtools -b -L select.bed wgs.bam > selected.bam`
-
-
-step3. make index file of your selected.bam file.
-
+`samtools -b -L selected.bed wgs.bam > selected.bam`
 `samtools index selected.bam`
 
+To generate the original WGS bam file, you can run LongRanger/EMA/BWA.
 
-Once you see `selected.bam` and `selected.bam.bai` in your working directory, you are all set to run AquilaSV pipeline.
+Once you generate the `selected.bam` in your working directory, you can use use it to run AquilaSV pipeline.
