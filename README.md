@@ -43,7 +43,7 @@ python3 AquilaSV/bin/AquilaSV_step1.py  --bam_file selected.bam --vcf_file test_
 ```
 #### *Required parameters
 
-**--bam_file:** "selected.bam" is a bam file generated from BWA-MEM/LongRanger/EMA. How to get the bam file, you can also check <a href="https://github.com/maiziezhoulab/AquilaSV/blob/master/src/How_to_get_bam_and_vcf.md">here</a>.
+**--bam_file:** "selected.bam" is a bam file generated from BWA-MEM/LongRanger/EMA and samtools. How to get the bam file, you can also check <a href="https://github.com/maiziezhoulab/AquilaSV/blob/master/src/How_to_get_bam_and_vcf.md">here</a>.
 
 **--vcf_file:** "test_freebayes.vcf" is a VCF file generated from variant caller like "FreeBayes". How to get the vcf file, you can also check <a href="https://github.com/maiziezhoulab/AquilaSV/blob/master/src/How_to_get_bam_and_vcf.md">here</a>. 
 
