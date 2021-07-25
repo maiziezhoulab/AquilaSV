@@ -78,8 +78,8 @@ def sort_paf(hap_paf,hap_paf_sorted,xin):
 
 
 def get_var(hap_paf_sorted,hap_var_txt,xin):
-    os.chmod(code_path+"/k8-0.2.4/k8-Linux",0o777)
-    use_cmd = code_path + "/k8-0.2.4/k8-Linux "  + code_path + "paftools/" +  "/paftools.js " + " call -l 1 -L 1 -q 20 " +  hap_paf_sorted + " > " +  hap_var_txt 
+    #use_cmd = code_path + "/k8-0.2.4/k8-Linux "  + code_path + "paftools/" +  "/paftools.js " + " call -l 1 -L 1 -q 20 " +  hap_paf_sorted + " > " +  hap_var_txt 
+    use_cmd = "k8 "  + code_path + "paftools/" +  "/paftools.js " + " call -l 1 -L 1 -q 20 " +  hap_paf_sorted + " > " +  hap_var_txt 
     Popen(use_cmd,shell=True).wait()
     
 
