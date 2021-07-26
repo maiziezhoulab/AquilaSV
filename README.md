@@ -132,7 +132,7 @@ test_sv
 |
 |-Assembly_Contigs_files
 |    |-Aquila_Contig_chr*.fasta                    --> (final contigs fasta file for the target region)
-|    |-Aquila_Contig_chr3.bam                      --> (final contigs bam file for the target region)
+|    |-Aquila_Contig_chr*.bam                      --> (final contigs bam file for the target region)
 |    |-Aquila_Contig_chr*_hp1.fasta                     --> (final contigs fasta file for haplotype 1)
 |    └-Aquila_Contig_chr*_hp2.fasta                     --> (final contigs fasta file for haplotype 2)
 |
@@ -142,7 +142,7 @@ test_sv
      
 ```
 
-## Final contig.bam diplayed in IGV:
+## Final contig bam file (Aquila_Contig_chr*.bam) diplayed in IGV:
 <p align="center">
 	<img src="src/igv1.png"  width="650">
 </p>
