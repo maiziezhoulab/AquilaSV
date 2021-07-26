@@ -142,7 +142,7 @@ test_sv
      
 ```
 
-## Final contig bam file (Aquila_Contig_chr*.bam) diplayed in IGV:
+## Final contig bam file (Aquila_Contig_chr*.bam) diplayed in IGV (SV + 25kb left and right flanking regions):
 <p align="center">
 	<img src="src/igv1.png"  width="650">
 </p>
