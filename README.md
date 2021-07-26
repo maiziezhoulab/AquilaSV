@@ -33,7 +33,7 @@ After running "./install.sh", a folder "source" would be download.
 Put the "AquilaSV/bin" in the ".bashrc" file, and source the ".bashrc" file <br />
 Or just use the fullpath of "**AquilaSV_step1.py**", "**AquilaSV_step2.py**" and "**AquilaSV_step3.py**"
 
-*We provide  <a href="https://github.com/maiziex/Aquila_stLFR/blob/master/example_data/run_example_data.md">a test example dataset</a> to run the whole pipeline. 
+*We provide  <a href="https://github.com/maiziex/AquilaSV/blob/master/example_data/run_example_data.md">a test example dataset</a> to run the whole pipeline. 
 
 
 ### Step 1: 
