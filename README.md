@@ -140,6 +140,10 @@ test_sv
      
 ```
 
+## Final contig.bam diplayed in IGV:
+<p align="center">
+	<img src="resource/igv.png"  width="400">
+</p>
 
 
 ## Troubleshooting:
