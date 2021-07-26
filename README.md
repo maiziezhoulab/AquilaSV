@@ -109,7 +109,7 @@ diate files or no
 #### Memory/Time Usage For AquilaSV
 Coverage| Memory| Time for one SV on a single node 
 --- | --- | --- | 
-60X | 30GB | 00:10:32 |
+60X | 20GB | 00:10:32 |
 
 
 ## Final Output:
