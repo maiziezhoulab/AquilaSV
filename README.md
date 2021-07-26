@@ -118,25 +118,27 @@ Coverage| Memory| Time for one SV on a single node
 test_sv
 |
 |-H5_for_molecules 
-|   └-target_chr3_sorted.h5    --> (Fragment files for interested region including barcode, variants annotation (0: ref allele; 1: alt allele), coordinates for each fragment)
+|   └-target_chr3_sorted.h5    --> (molecule files for target region including barcode, variants annotation (0: ref allele; 1: alt allele), coordinates for each molecule)
 |
 |-results_phased_probmodel
-|   └-chr*.phased_final        --> (Phased fragment files)
+|   └-chr*.phased_final        --> (Phased molecule files)
 |
 |
 |-Local_Assembly_by_chunks
 |   └-chr*_files_cutPBHC
-|       |-fastq_by_*_*_hp1.fastq                  --> (fastq file for a small phased chunk of haplotype 1)
-|       |-fastq_by_*_*_hp2.fastq                  --> (fastq file for a small phased chunk of haplotype 2)
+|       |-fastq_by_*_*_hp1.fastq                  --> (reads fastq file for haplotype 1)
+|       |-fastq_by_*_*_hp2.fastq                  --> (reads fastq file for haplotype 2)
 |       
 |
 |-Assembly_Contigs_files
-|    |-Aquila_Contig_chr*.fasta                    --> (final contigs for intersted region)
-|    |-Aquila_Contig_chr*_hp1.fasta                     --> (final contigs for hp1)
-|    └-Aquila_Contig_chr*_hp2.fasta                     --> (final contigs for hp2)
+|    |-Aquila_Contig_chr*.fasta                    --> (final contigs fasta file for the target region)
+|    |-Aquila_Contig_chr3.bam                      --> (final contigs bam file for the target region)
+|    |-Aquila_Contig_chr*_hp1.fasta                     --> (final contigs fasta file for haplotype 1)
+|    └-Aquila_Contig_chr*_hp2.fasta                     --> (final contigs fasta file for haplotype 2)
 |
 └-AquilaSV_step3_results
-     └-AquilaSV_Contig_final.vcf --> (final VCF including SNPs, small indels and SVs)
+     └-AquilaSV_Contig_final.vcf --> (final VCF including SNPs, small Indels and SVs)
+     
      
 ```
 
