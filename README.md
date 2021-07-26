@@ -142,7 +142,7 @@ test_sv
 
 ## Final contig.bam diplayed in IGV:
 <p align="center">
-	<img src="src/igv.png"  width="800">
+	<img src="src/igv.png"  width="600">
 </p>
 
 
