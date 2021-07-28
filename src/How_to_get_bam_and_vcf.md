@@ -1,4 +1,4 @@
-### To generate the bam file for the target region:
+### To generate bam file for the target region:
 
 #### step1. generate the bed file "selected.bed". 
 The bed file contains the chromosome name, start position and end position of your target region. eg. `chr1 123456 223456`. 
@@ -13,7 +13,7 @@ The bed file contains the chromosome name, start position and end position of yo
 Check <a href="https://github.com/maiziex/Aquila_stLFR/blob/master/src/How_to_get_bam_and_vcf.md">here</a> for more details. 
 
 
-### To generate the vcf file through FreeBayes:
+### To generate VCF file through FreeBayes:
 `freebayes -f ref_hg19.fa wgs.bam > test_freebayes.vcf`
 
 or 
