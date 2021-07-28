@@ -12,6 +12,9 @@ The bed file contains the chromosome name, start position and end position of yo
 Check <a href="https://github.com/maiziex/Aquila_stLFR/blob/master/src/How_to_get_bam_and_vcf.md">here</a> for more details. 
 
 
+To generate the vcf file through FreeBayes:
+`freebayes -f ref_hg19.fa wgs.bam > test_freebayes.vcf`
+or 
+`freebayes -f ref_hg19.fa selected.bam > test_freebayes.vcf`
 
-
-Once you generate the `selected.bam` in your working directory, you can use use it to run AquilaSV pipeline.
+Once you generate the `selected.bam` and `test_freebayes.vcf` in your working directory, you can use use it to run AquilaSV pipeline.
