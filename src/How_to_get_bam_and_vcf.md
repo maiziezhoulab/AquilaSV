@@ -1,4 +1,4 @@
-### To generate bam file for the target region:
+### To generate BAM file for the target region:
 
 #### step1. generate the bed file "selected.bed". 
 The bed file contains the chromosome name, start position and end position of your target region. eg. `chr1 123456 223456`. 
