@@ -14,10 +14,10 @@ Check <a href="https://github.com/maiziex/Aquila_stLFR/blob/master/src/How_to_ge
 
 
 ### To generate VCF file through FreeBayes:
-`freebayes -f ref_hg19.fa wgs.bam > test_freebayes.vcf`
+`freebayes -f genome_hg19.fa wgs.bam > test_freebayes.vcf`
 
 or 
 
-`freebayes -f ref_hg19.fa selected.bam > test_freebayes.vcf`
+`freebayes -f genome_hg19.fa selected.bam > test_freebayes.vcf`
 
 Once you generate the `selected.bam` and `test_freebayes.vcf` in your working directory, you can use use it to run AquilaSV pipeline.
