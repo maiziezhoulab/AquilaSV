@@ -8,7 +8,8 @@ The bed file contains the chromosome name, start position and end position of yo
 `samtools -b -L selected.bed wgs.bam > selected.bam`
 `samtools index selected.bam`
 
-:octocat: To generate the original WGS bam file, you can run LongRanger/EMA/BWA.
+:octocat: To generate the original WGS bam file for 10X or stLFR linked-reads, you can run LongRanger/EMA/BWA.
+You can refer here for more details. 
 
 
 
