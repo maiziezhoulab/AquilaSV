@@ -9,7 +9,7 @@ The bed file contains the chromosome name, start position and end position of yo
 `samtools index selected.bam`
 
 :octocat: To generate the original WGS bam file for 10X or stLFR linked-reads, you can run LongRanger/EMA/BWA.
-You can refer here for more details. 
+You can check <a href="https://github.com/maiziex/Aquila_stLFR/blob/master/src/How_to_get_bam_and_vcf.md">here</a> for more details. 
 
 
 
