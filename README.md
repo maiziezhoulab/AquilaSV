@@ -148,7 +148,7 @@ test_sv
 </p>
 
 ## Cite AquilaSV:
-#### Structural variant detection in region-based phased diploid assemblies from linked-reads. Can Luo and X. Zhou. The International Symposium on Bioinformatics Research and Applications (ISBRA) (2021)  (accepted) 
+#### Structural variant detection in region-based phased diploid assemblies from linked-reads. C. Luo and X. Zhou. The International Symposium on Bioinformatics Research and Applications (ISBRA) (2021)  (accepted) 
 
 ## Troubleshooting:
 ##### Please submit issues on the github page for <a href="https://github.com/maiziezhoulab/AquilaSV/issues">AquilaSV</a>. 
