@@ -1,4 +1,4 @@
-2023/10/17 update: AquilaSV is renamed to "RegionIndel" 
+2023/10/17 update: AquilaSV is renamed to "RegionIndel".
 A new version of RegionIndel will be announced soon. 
 
 # :milky_way: AquilaSV :eagle: 
