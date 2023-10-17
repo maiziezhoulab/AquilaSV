@@ -1,5 +1,6 @@
-2023/10/17 update: AquilaSV is renamed to "RegionIndel".
-A new version of RegionIndel will be announced soon. 
+## 2023/10/17 update: AquilaSV is moved to the project "RegionIndel" under "https://github.com/maiziezhoulab/RegionIndel".
+
+
 
 # :milky_way: AquilaSV :eagle: 
 [![BioConda Install](https://img.shields.io/conda/dn/bioconda/aquilasv.svg?style=flag&label=BioConda%20install)](https://anaconda.org/bioconda/aquilasv)
