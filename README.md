@@ -151,6 +151,8 @@ test_sv
 	<img src="src/igv1.png"  width="650">
 </p>
 
+## Cite RegionIndel 
+C. Luo, B. A. Peters, X. M. Zhou. Large indel detection in region-based phased diploid assemblies from linked-reads. BMC Genomics (2025) 26:263. 
 
 ## Troubleshooting:
 ##### Please submit issues on the github page for <a href="https://github.com/maiziezhoulab/AquilaSV/issues">AquilaSV</a>. 
